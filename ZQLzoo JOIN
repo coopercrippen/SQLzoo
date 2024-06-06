@@ -93,3 +93,39 @@ List the player for every goal scored in a game where the stadium was 'National 
 SELECT player
 FROM goal JOIN game ON goal.matchid = game.id 
 WHERE stadium = 'National Stadium, Warsaw'
+
+
+
+#8
+/*
+The example query shows all goals scored in the Germany-Greece quarterfinal.
+Instead show the name of all players who scored a goal against Germany.
+*/
+
+
+SELECT DISTINCT player
+  FROM game JOIN goal ON id = matchid
+    WHERE (team1 = 'GER' OR team2 = 'GER')
+    AND teamid <> 'GER'
+
+
+
+#9
+/*
+Show teamname and the total number of goals scored.
+*/
+
+SELECT teamname, COUNT(teamid)
+  FROM eteam JOIN goal ON id=teamid
+ GROUP BY teamname
+
+
+
+#10
+/*
+Show the stadium and the number of goals scored in each stadium.
+*/
+
+SELECT stadium, COUNT(*)
+FROM game JOIN goal ON (id = matchid)
+GROUP BY stadium
